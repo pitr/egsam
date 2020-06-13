@@ -1,4 +1,4 @@
-# egsam
+# egsam time!
 
 Test your Gemini client
 
