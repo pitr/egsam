@@ -1,0 +1,20 @@
+# 3.2.2 2x (SUCCESS)
+
+```
+### 3.2.2 2x (SUCCESS)
+
+Status codes beginning with 2 are SUCCESS status codes, meaning:
+
+The request was handled successfully and a response body will follow the
+response header. The <META> line is a MIME media type which applies to
+the response body.
+```
+
+Let's test media types:
+
+=> 3.2.2.text ▶️ text/plan, should see Pass
+=> 3.2.2.html ▶️ text/html, should see Pass
+=> 3.2.2.jpg ▶️ jpeg, should see Pass
+=> 3.2.2.jpg.bad ▶️ jpeg but content is text, should fail gracefully
+
+=> 3.2.3.gmi 3x (REDIRECT)

@@ -1,0 +1,18 @@
+# 3.4 Response body handling
+
+```
+## 3.4 Response body handling
+
+Response handling by clients should be informed by the provided MIME type
+information.  Gemini defines one MIME type of its own (text/gemini) whose
+handling is discussed below in section 5.  In all other cases, clients
+should do "something sensible" based on the MIME type.  Minimalistic
+clients might adopt a strategy of printing all other text/* responses
+to the screen without formatting and saving all non-text responses to
+the disk.  Clients for unix systems may consult /etc/mailcap to find
+installed programs for handling non-text types.
+```
+
+=> 3.4.text.unknown ▶️ text/garbage, should display or fail gracefully
+
+=> 4.gmi TLS

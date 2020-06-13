@@ -1,0 +1,32 @@
+# 3.2 Status codes
+
+```
+## 3.2 Status codes
+
+Gemini uses two-digit numeric status codes.  Related status codes share
+the same first digit.  Importantly, the first digit of Gemini status
+codes do not group codes into vague categories like "client error" and
+"server error" as per HTTP.  Instead, the first digit alone provides
+enough information for a client to determine how to handle the response.
+By design, it is possible to write a simple but feature complete client
+which only looks at the first digit.  The second digit provides more
+fine-grained information, for unambiguous server logging, to allow writing
+comfier interactive clients which provide a slightly more streamlined
+user interface, and to allow writing more robust and intelligent automated
+clients like content aggregators, search engine crawlers, etc.
+
+The first digit of a response code unambiguously places the response
+into one of six categories, which define the semantics of the <META> line.
+```
+
+=> 3.2.one.digit ▶️ Server returns 1 digit status code, must fail
+=> 3.2.three.digits ▶️ Server returns 3 digit status code, must fail
+=> 3.2.status.1 ▶️ Server returns 19 status code, fail or assume 10
+=> 3.2.status.2 ▶️ Server returns 29 status code, fail or assume 20
+=> 3.2.status.3 ▶️ Server returns 39 status code, fail or assume 30 and redirect back here
+=> 3.2.status.4 ▶️ Server returns 49 status code, fail or assume 40
+=> 3.2.status.5 ▶️ Server returns 59 status code, fail or assume 50
+=> 3.2.status.6 ▶️ Server returns 69 status code, fail or assume 60 (do NOT create or send a certificate)
+=> 3.2.status.9 ▶️ Server returns 99 status code, fail gracefully
+
+=> 3.2.1.gmi 1x (INPUT)

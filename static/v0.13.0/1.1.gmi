@@ -1,0 +1,29 @@
+# 1.1 Gemini transactions
+
+```
+## 1.1 Gemini transactions
+
+There is one kind of Gemini transaction, roughly equivalent to a gopher
+request or a HTTP "GET" request.  Transactions happen as follows:
+
+C:   Opens connection
+S:   Accepts connection
+C/S: Complete TLS handshake (see section 4)
+C:   Validates server certificate (see 4.2)
+C:   Sends request (one CRLF terminated line) (see section 2)
+S:   Sends response header (one CRLF terminated line), closes connection
+     under non-success conditions (see 3.1 and 3.2)
+S:   Sends response body (text or binary data) (see 3.3)
+S:   Closes connection
+C:   Handles response (see 3.4)
+```
+
+We will test client certificate in later sections.
+
+Let's kick off with some connection tests:
+
+=> gemini://pitr.ca/ ▶️ Port is not open, client should fail gracefully
+=> 1.1.write.timeout ▶️ Server takes too long to write response, client should fail gracefully
+=> 1.1.no.close ▶️ Server writes response, but never closes connection, client should either show partial content, or fail gracefully
+
+=> 2.gmi Gemini requests

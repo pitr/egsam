@@ -1,0 +1,52 @@
+# 4.3 Transient client certificate sessions
+
+```
+## 4.3 Transient client certificate sessions
+
+Self-signed client certificates can optionally be used by Gemini clients
+to permit servers to recognise subsequent requests from the same client
+as belonging to a single "session".  This facilitates maintaining state
+in server-side applications.  The functionality is very similar to HTTP
+cookies, but with important differences.
+
+Whereas HTTP cookies are originally created by a webserver and given
+to a client via a response header, client certificates are created by
+the client and given to the server as part of the TLS handshake: Client
+certificates are fundamentally a client-centric means of identification.
+Further, whereas HTTP cookies can be "resurrected" by webservers after
+a client deletes them if the server recognises the client by means of
+browser finger-printing or some other tracking technology (leading to
+unkillable "super cookies"), if a client deletes a client certificate
+and also the accompanying private key (which the server has never seen),
+then the session ID can never be recreated.  Thus clients not only need to
+opt in to a certificate session, but once they have done so they retain
+a guaranteed ability to opt out of it at any point and the server cannot
+defeat this ability.
+
+Gemini requests typically will be made without a client certificate being
+sent to the server.  If a requested resource is part of a server-side
+application which requires persistent state, a Gemini server can return
+a status code of 61 (see Appendix 1 below) to request that the client
+repeat the request with a "transient certificate" to initiate a client
+certificate section.
+
+Interactive clients for human users MUST inform users that such a session
+has been requested and require the user to approve generation of such a
+certificate.  Transient certificates MUST NOT be generated automatically.
+
+Transient certificates are limited in scope to a particular domain.
+Transient certificates MUST NOT be reused across different domains.
+
+Transient certificates MUST be permanently deleted when the matching
+server issues a response with a status code of 21 (see Appendix 1 below).
+
+Transient certificates MUST be permanently deleted when the client
+process terminates.
+
+Transient certificates SHOULD be permanently deleted after not having
+been used for more than 24 hours.
+```
+
+=> 4.3.transient ▶️ Asks for Transient certificate, then serves 21 to instruct client to delete certificate, then tests that it was deleted.
+
+=> 5.gmi The text/gemini media type

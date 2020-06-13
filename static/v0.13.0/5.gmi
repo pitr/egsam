@@ -1,0 +1,388 @@
+# Work in Progress
+
+Testing the rest of the spec is still in progress.
+
+=> https://github.com/pitr/egsam Please consider contributing here
+
+## Score
+
+You got to the end! To calculate the score, count failed tests and subtract from 30, total number of tests.
+
+```
+# 5 The text/gemini media type
+
+## 5.1 Overview
+
+In the same sense that HTML is the "native" response format of HTTP and
+plain text is the native response format of gopher, Gemini defines its
+own native response format - though of course, thanks to the inclusion
+of a MIME type in the response header Gemini can be used to serve plain
+text, rich text, HTML, Markdown, LaTeX, etc.
+
+Response bodies of type "text/gemini" are a kind of lightweight hypertext
+format, which takes inspiration from gophermaps and from Markdown.
+The format permits richer typographic possibilities than the plain text of
+Gopher, but remains extremely easy to parse.  The format is line-oriented,
+and a satisfactory rendering can be achieved with a single pass of a
+document, processing each line independently.  As per gopher, links can
+only be displayed one per line, encouraging neat, list-like structure.
+
+Similar to how the two-digit Gemini status codes were designed so that
+simple clients can function correctly while ignoring the second digit,
+the text/gemini format has been designed so that simple clients can
+ignore the more advanced features and still remain very usable.
+
+## 5.2 Parameters
+
+As a subtype of the top-level media type "text", "text/gemini" inherits
+the "charset" parameter defined in RFC 2046.  However, as noted in 3.3,
+the default value of "charset" is "UTF-8" for "text" content transferred
+via Gemini.
+
+A single additional parameter specific to the "text/gemini" subtype is
+defined: the "lang" parameter.  The value of "lang" denotes the natural
+language or language(s) in which the textual content of a "text/gemini"
+document is written.  The presence of the "lang" parameter is optional.
+When the "lang" parameter is present, its interpretation is defined
+entirely by the client.  For example, clients which use text-to-speech
+technology to make Gemini content accessible to visually impaired
+users may use the value of "lang" to achieve improve pronounciation
+of content.  Clients which render text to a screen may use the value of
+"lang" to determine whether text should be displayed left-to-right or
+right-to-left.  Simple clients for users who only read languages written
+left-to-right may simply ignore the value of "lang".  When the "lang"
+parameter is not present, no default value should be assumed and clients
+which require some notion of a language in order to process the content
+(such as text-to-speech screen readers) should rely on user-input to
+determine how to proceed in the absence of a "lang" parameter.
+
+Valid values for the "lang" parameter are comma-separated lists of one
+or more language tags as defined in RFC4646.  For example:
+
+* "text/gemini; lang=en" Denotes a text/gemini document written in English
+* "text/gemini; lang=fr" Denotes a text/gemini document written in French
+* "text/gemini; lang=en,fr" Denotes a text/gemini document written in
+a mixture of English and French
+* "text/gemini; lang=de-CH" Denotes a text/gemini document written in
+Swiss German
+* "text/gemini; lang=sr-Cyrl" Denotes a text/gemini document written in
+Serbian using the Cyrllic script
+* "text/gemini; lang=zh-Hans-CN" Denotes a text/gemini document written
+in Chinese using the Simplified script as used in mainland China
+
+## 5.3 Line-orientation
+
+As mentioned, the text/gemini format is line-oriented.  Each line of
+a text/gemini document has a single "line type".  It is possible to
+unambiguously determine a line's type purely by inspecting its first
+three characters.  A line's type determines the manner in which it should
+be presented to the user.  Any details of presentation or rendering
+associated with a particular line type are strictly limited in scope to
+that individual line.
+
+There are 7 different line types in total.  However, a fully functional
+and specification compliant Gemini client need only recognise and
+handle 4 of them - these are the "core line types", (see 5.4).  Advanced
+clients can also handle the additional "advanced line types" (see 5.5).
+Simple clients can treat all advanced line types as equivalent to one
+of the core line types and still offer an adequate user experience.
+
+## 5.4 Core line types
+
+The four core line types are:
+
+### 5.4.1 Text lines
+
+Text lines are the most fundamenal line type - any line which does not
+match the definition of another line type defined below defaults to being
+a text line.  The majority of lines in a typical text/gemini document
+will be text lines.
+
+Text lines should be presented to the user, after being wrapped to the
+appropriate width for the client's viewport (see below).  Text lines
+may be presented to the user in a visually pleasing manner for general
+reading, the precise meaning of which is at the client's discretion.
+For example, variable width fonts may be used, spacing may be normalised,
+with spaces between sentences being made wider than spacing between
+words, and other such typographical niceties may be applied.  Clients may
+permit users to customise the appearance of text lines by altering the
+font, font size, text and background colour, etc.  Authors should not
+expect to exercise any control over the precise rendering of their text
+lines, only of their actual textual content.  Content such as ASCII art,
+computer source code, etc. which may appear incorrectly when treated as
+such should be enclosed beween preformatting toggle lines (see 5.4.3).
+
+Blank lines are instances of text lines and have no special meaning.
+They should be rendered individually as vertical blank space each time
+they occur.  In this way  they are analogous to <br/> tags in HTML.
+Consecutive blank lines should NOT be collapsed into a fewer blank lines.
+Note also that consecutive non-blank text lines do not form any kind
+of coherent unit or block such as a "paragraph": all text lines are
+independent entities.
+
+Text lines which are longer than can fit on a client's display device
+SHOULD be "wrapped" to fit, i.e. long lines should be split (ideally
+at whitespace or at hyphens) into multiple consecutive lines of a
+device-appropriate width.  This wrapping is applied to each line of
+text independently.  Multiple consecutive lines which are shorter than
+the client's display device MUST NOT be combined into fewer, longer lines.
+
+In order to take full advantage of this method of text formatting,
+authors of text/gemini content SHOULD avoid hard-wrapping to a specific
+fixed width, in contrast to the convention in Gopherspace where text
+is typically wrapped at 80 characters or fewer.  Instead, text which
+should be displayed as a contiguous block should be written as a single
+long line.  Most text editors can be configured to "soft-wrap", i.e. to
+write this kind of file while displaying the long lines wrapped at word
+boundaries to fit the author's display device.
+
+Authors who insist on hard-wrapping their content MUST be aware that the
+content will display neatly on clients whose display device is as wide
+as the hard-wrapped length or wider, but will appear with irregular line
+widths on narrower clients.
+
+### 5.4.2 Link lines
+
+Lines beginning with the two characters "=>" are link lines, which have
+the following syntax:
+
+=>[<whitespace>]<URL>[<whitespace><USER-FRIENDLY LINK NAME>]<CR><LF>
+
+where:
+
+* <whitespace> is any non-zero number of consecutive spaces or
+  tabs
+* Square brackets indicate that the enclosed content is
+  optional.
+* <URL> is a URL, which may be absolute or relative.  If the URL does
+  not include a scheme, a scheme of gemini:// is implied.
+
+All the following examples are valid link lines:
+
+=> gemini://example.org/
+=> gemini://example.org/ An example link
+=> gemini://example.org/foo Another example link at the same host
+=>gemini://example.org/bar Yet another example link at the same host
+=> foo/bar/baz.txt  A relative link
+=>  gopher://example.org:70/1 A gopher link
+
+URLs in link lines must have reserved characters and spaces
+percent-encoded as per RFC 3986.
+
+Note that link URLs may have schemes other than gemini://.  This means
+that Gemini documents can simply and elegantly link to documents hosted
+via other protocols, unlike gophermaps which can only link to non-gopher
+content via a non-standard adaptation of the `h` item-type.
+
+Clients can present links to users in whatever fashion the client
+author wishes, however clients MUST NOT automatically make any network
+connections as part of displaying links whose scheme corresponds to a
+network protocol (e.g. gemini://, gopher://, https://, ftp://, etc.).
+
+### 5.4.3 Preformatting toggle lines
+
+Any line whose first three characters are "```" (i.e. three consecutive
+back ticks with no leading whitespace) are preformatted toggle lines.
+These lines should NOT be included in the rendered output shown to
+the user.  Instead, these lines toggle the parser between preformatted
+mode being "on" or "off".  Preformatted mode should be "off" at the
+beginning of a document.  The current status of preformatted mode is the
+only internal state a parser is required to maintain.  When preformatted
+mode is "on", the usual rules for identifying line types are suspended,
+and all lines should be identified as preformatted text lines (see 5.4.4).
+
+Preformatting toggle lines can be thought of as analogous to <pre>
+and </pre> tags in HTML.
+
+### 5.4.4 Preformatted text lines
+
+Preformatted text lines should be presented to the user in a "neutral",
+monowidth font without any alteration to whitespace or stylistic
+enhancements.  Graphical clients should use scrolling mechanisms to
+present preformatted text lines which are longer than the client viewport,
+in preference to wrapping.  In displaying preformatted text lines,
+clients should keep in mind applications like ASCII art and computer
+source code: in particular, source code in langugaes with significant
+whitespace (e.g. Python) should be able to be copied and pasted from
+the client into a file and interpreted/compiled without any problems
+arising from the client's manner of displaying them.
+
+## 5.4 Advanced line types
+
+The following advanced line types MAY be recognised by advanced clients.
+Simple clients may treat them all as text lines as per 5.4.1 without
+any loss of essential function.
+
+### 5.4.1 Heading lines
+
+Lines beginning with "#" are heading lines.  Heading lines consist of one,
+two or three consecutive "#" characters, followed by optional whitespace,
+followed by heading text.  The number of # characters indicates the
+"level" of header;  #, ## and ### can be thought of as analogous to <h1>,
+<h2> and <h3> in HTML.
+
+Heading text should be presented to the user, and clients MAY use
+special formatting, e.g. a larger or bold font, to indicate its status
+as a header (simple clients may simply print the line, including its
+leading #s, without any styling at all).  However, the main motivation
+for the definition of heading lines is not stylistic but to provide
+a machine-readable representation of the internal structure of the
+document.  Advanced clients can use this information to, e.g. display
+an automatically generated and hierarchically formatted "table of
+contents" for a long document in a side-pane, allowing users to easily
+jump to specific sections without excessive scrolling.  CMS-style tools
+automatically generating menus or Atom/RSS feeds for a directory of
+text/gemini files can use first
+heading in the file as a human-friendly title.
+
+### 5.4.2 Unordered list items
+
+Lines beginning with "* " are unordered list items.  This line type exists
+purely for stylistic reasons.  The * may be replaced in advanced clients
+by a bullet symbol.  Any text after the "* " should be presented to the
+user as if it were a text line, i.e.  wrapped to fit the viewport and
+formatted "nicely".  Advanced clients can take the space of the bullet
+symbol into account when wrapping long list items to ensure that all
+lines of text corresponding to the item are offset an equal distance
+from the left of the screen.
+
+### 5.4.3 Quote lines
+
+Lines beginning with ">" are quote lines.  This line type exists so
+that advanced clients may use distinct styling to convey to readers the
+important semantic information that certain text is being quoted from
+an external source.  For example, when wrapping long lines to the the
+viewport, each resultant line may have a ">" symbol placed at the front.
+
+# Appendix 1. Full two digit status codes
+
+## 10 INPUT
+
+As per definition of single-digit code 1 in 3.2.
+
+## 11 SENSITIVE INPUT
+
+As per status code 10, but for use with sensitive input such as passwords.
+Clients should present the prompt as per status code 10, but the user's
+input should not be echoed to the screen to prevent it being read by
+"shoulder surfers".
+
+## 20 SUCCESS
+
+As per definition of single-digit code 2 in 3.2.
+
+## 21 SUCCESS - END OF CLIENT CERTIFICATE SESSION
+
+The request was handled successfully and a response body will follow the
+response header.  The <META> line is a MIME media type which applies to
+the response body.  In addition, the server is signalling the end of a
+transient client certificate session which was previously initiated with
+a status 61 response.  The client should immediately and permanently
+delete the certificate and accompanying private key which was used in
+this request.
+
+## 30 REDIRECT - TEMPORARY
+
+As per definition of single-digit code 3 in 3.2.
+
+## 31 REDIRECT - PERMANENT
+
+The requested resource should be consistently requested from the new
+URL provided in future.  Tools like search engine indexers or content
+aggregators should update their configurations to avoid requesting the
+old URL, and end-user clients may automatically update bookmarks, etc.
+Note that clients which only pay attention to the initial digit of status
+codes will treat this as a temporary redirect.  They will still end up
+at the right place, they just won't be able to make use of the knowledge
+that this redirect is permanent, so they'll pay a small performance
+penalty by having to follow the redirect each time.
+
+## 40 TEMPORARY FAILURE
+
+As per definition of single-digit code 4 in 3.2.
+
+## 41 SERVER UNAVAILABLE
+
+The server is unavailable due to overload or maintenance.  (cf HTTP 503)
+
+## 42 CGI ERROR
+
+A CGI process, or similar system for generating dynamic content, died
+unexpectedly or timed out.
+
+## 43 PROXY ERROR
+
+A proxy request failed because the server was unable to successfully
+complete a transaction with the remote host.  (cf HTTP 502, 504)
+
+## 44 SLOW DOWN
+
+Rate limiting is in effect.  <META> is an integer number of seconds
+which the client must wait before another request is made to this server.
+(cf HTTP 429)
+
+## 50 PERMANENT FAILURE
+
+As per definition of single-digit code 5 in 3.2.
+
+## 51 NOT FOUND
+
+The requested resource could not be found but may be available in the
+future.  (cf HTTP 404) (struggling to remember this important status code?
+Easy: you can't find things hidden at Area 51!)
+
+## 52 GONE
+
+The resource requested is no longer available and will not be available
+again.  Search engines and similar tools should remove this resource from
+their indices.  Content aggregators should stop requesting the resource
+and convey to their human users that the subscribed resource is gone.
+(cf HTTP 410)
+
+## 53 PROXY REQUEST REFUSED
+
+The request was for a resource at a domain not served by the server and
+the server does not accept proxy requests.
+
+## 59 BAD REQUEST
+
+The server was unable to parse the client's request, presumably due to
+a malformed request.  (cf HTTP 400)
+
+## 60 CLIENT CERTIFICATE REQUIRED
+
+As per definition of single-digit code 6 in 3.2.
+
+## 61 TRANSIENT CERTIFICATE REQUESTED
+
+The server is requesting the initiation of a transient client certificate
+session, as described in 4.3.  The client should ask the user if they
+want to accept this and, if so, generate a disposable key/cert pair and
+re-request the resource using it.  The key/cert pair should be destroyed
+when the client quits, or some reasonable time after it was last used
+(24 hours?  Less?)
+
+## 62 AUTHORISED CERTIFICATE REQUIRED
+
+This resource is protected and a client certificate which the server
+accepts as valid must be used - a disposable key/cert generated on the
+fly in response to this status is not appropriate as the server will do
+something like compare the certificate fingerprint against a white-list
+of allowed certificates.  The client should ask the user if they want
+to use a pre-existing certificate from a stored "key chain".
+
+## 63 CERTIFICATE NOT ACCEPTED
+
+The supplied client certificate is not valid for accessing the requested
+resource.
+
+## 64 FUTURE CERTIFICATE REJECTED
+
+The supplied client certificate was not accepted because its validity
+start date is in the future.
+
+## 65 EXPIRED CERTIFICATE REJECTED
+
+The supplied client certificate was not accepted because its expiry date
+has passed.
+```

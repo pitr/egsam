@@ -1,0 +1,16 @@
+# 4.1 Version requirements
+
+```
+## 4.1 Version requirements
+
+Servers MUST use TLS version 1.2 or higher and SHOULD use TLS version 1.3
+or higher.  TLS 1.2 is reluctantly permitted for now to avoid drastically
+reducing the range of available implementation libraries.  Hopefully TLS
+1.3 or higher can be specced in the near future.  Clients who wish to be
+"ahead of the curve MAY refuse to connect to servers using TLS version
+1.2 or lower.
+```
+
+▶️ Pass, this server checks that your client uses TLS version 1.2+
+
+=> 4.2.gmi Server certificate validation

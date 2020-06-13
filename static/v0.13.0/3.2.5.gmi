@@ -1,0 +1,18 @@
+# 3.3.5 5x (PERMANENT FAILURE)
+
+```
+### 3.3.5 5x (PERMANENT FAILURE)
+
+Status codes beginning with 5 are PERMANENT FAILURE status codes, meaning:
+
+The request has failed.  There is no response body.  The nature of the
+failure is permanent, i.e. identical future requests will reliably fail
+for the same reason.  The contents of <META> may provide additional
+information on the failure, and should be displayed to human users.
+Automatic clients such as aggregators or indexing crawlers should not
+repeat this request.
+```
+
+=> 3.2.5.fail ▶️ Client should show Pass as error message
+
+=> 3.2.6.gmi 6x (CLIENT CERTIFICATE REQUIRED)

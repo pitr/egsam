@@ -1,0 +1,25 @@
+# 3.5.6 Notes
+
+```
+### 3.5.6 Notes
+
+Note that for basic interactive clients for human use, errors 4 and 5 may
+be effectively handled identically, by simply displaying the contents
+of <META> under a heading of "ERROR".  The temporary/permanent error
+distinction is primarily relevant to well-behaving automated clients.
+Basic clients may also choose not to support client-certificate
+authentication, in which case only four distinct status handling routines
+are required (for statuses beginning with 1, 2, 3 or a combined 4-or-5).
+
+The full two-digit system is detailed in Appendix 1.  Note that for
+each of the six valid first digits, a code with a second digit of zero
+corresponds is a generic status of that kind with no special semantics.
+This means that basic servers without any advanced functionality need
+only be able to return codes of 10, 20, 30, 40 or 50.
+
+The Gemini status code system has been carefully designed so that the
+increased power (and correspondingly increased complexity) of the second
+digits is entirely "opt-in" on the part of both servers and clients.
+```
+
+=> 3.3.gmi Response bodies
