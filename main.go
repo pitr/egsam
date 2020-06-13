@@ -115,7 +115,7 @@ func main() {
 			return c.Text(gig.StatusSuccess, "Pass")
 		})
 		v13.Handle("/3.2.2.html", func(c gig.Context) error {
-			return c.Blob(gig.StatusSuccess, "3.2.2.html", []byte("<marquee>Pass</marquee>"))
+			return c.Blob(gig.StatusSuccess, "text/html", []byte("<marquee>Pass</marquee>"))
 		})
 		v13.Handle("/3.2.2.jpg", func(c gig.Context) error {
 			return c.File("static/pass.jpg")
