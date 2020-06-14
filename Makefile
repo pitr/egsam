@@ -3,8 +3,7 @@
 BINARY        ?= egsam
 SOURCES       = $(shell find . -name '*.go')
 BUILD_FLAGS   ?= -v
-PORT          ?= 1965
-LDFLAGS       ?= -w -s -X main.port=$(PORT)
+LDFLAGS       ?= -w -s
 
 default: run
 
@@ -19,7 +18,7 @@ deploy: build.linux
 	ssh ec2-user@$(PRODUCTION) 'cp $(BINARY) $(BINARY)-old'
 	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)-next $(BINARY)'
 	ssh ec2-user@$(PRODUCTION) 'sudo systemctl restart $(BINARY)'
-	scp -r static ec2-user@$(PRODUCTION):static
+	scp -r static/* ec2-user@$(PRODUCTION):static
 
 rollback:
 	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)-old $(BINARY)'

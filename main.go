@@ -8,8 +8,6 @@ import (
 	"github.com/pitr/gig"
 )
 
-var port = "1965"
-
 func main() {
 	g := gig.Default()
 
@@ -171,7 +169,7 @@ Fail if client offered to use another transient certificate, or did not present 
 		})
 	}
 
-	panic(g.Run(":"+port, "egsam.crt", "egsam.key"))
+	panic(g.Run("egsam.crt", "egsam.key"))
 }
 
 func unknownStatus(i int) gig.HandlerFunc {
