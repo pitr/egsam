@@ -1,5 +1,8 @@
 # 3.5.6 Notes
 
+=> 3.3.gmi Response bodies
+=> / Home
+
 ```
 ### 3.5.6 Notes
 
@@ -21,5 +24,3 @@ The Gemini status code system has been carefully designed so that the
 increased power (and correspondingly increased complexity) of the second
 digits is entirely "opt-in" on the part of both servers and clients.
 ```
-
-=> 3.3.gmi Response bodies

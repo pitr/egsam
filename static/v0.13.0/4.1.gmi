@@ -1,5 +1,10 @@
 # 4.1 Version requirements
 
+▶️ Pass, this server checks that your client uses TLS version 1.2+
+
+=> 4.2.gmi Server certificate validation
+=> / Home
+
 ```
 ## 4.1 Version requirements
 
@@ -10,7 +15,3 @@ reducing the range of available implementation libraries.  Hopefully TLS
 "ahead of the curve MAY refuse to connect to servers using TLS version
 1.2 or lower.
 ```
-
-▶️ Pass, this server checks that your client uses TLS version 1.2+
-
-=> 4.2.gmi Server certificate validation

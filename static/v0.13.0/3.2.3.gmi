@@ -1,5 +1,10 @@
 # 3.3.3 3x (REDIRECT)
 
+=> 3.2.3.redirect ▶️ Double redirect
+
+=> 3.2.4.gmi 4x (TEMPORARY FAILURE)
+=> / Home
+
 ```
 ### 3.3.3 3x (REDIRECT)
 
@@ -13,7 +18,3 @@ to request the resource at the original address and should not performance
 convenience actions like automatically updating bookmarks.  There is no
 response body.
 ```
-
-=> 3.2.3.redirect ▶️ Double redirect
-
-=> 3.2.4.gmi 4x (TEMPORARY FAILURE)

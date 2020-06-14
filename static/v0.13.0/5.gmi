@@ -3,6 +3,7 @@
 Testing the rest of the spec is still in progress.
 
 => https://github.com/pitr/egsam Please consider contributing here
+=> / Home
 
 ## Score
 

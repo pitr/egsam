@@ -1,5 +1,10 @@
 # 3.3.4 4x (TEMPORARY FAILURE)
 
+=> 3.2.4.fail ▶️ Client should show Pass as error message
+
+=> 3.2.5.gmi 5x (PERMANENT FAILURE)
+=> / Home
+
 ```
 ### 3.3.4 4x (TEMPORARY FAILURE)
 
@@ -10,7 +15,3 @@ failure is temporary, i.e. an identical request MAY succeed in the future.
 The contents of <META> may provide additional information on the failure,
 and should be displayed to human users.
 ```
-
-=> 3.2.4.fail ▶️ Client should show Pass as error message
-
-=> 3.2.5.gmi 5x (PERMANENT FAILURE)

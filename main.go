@@ -6,18 +6,12 @@ import (
 	"time"
 
 	"github.com/pitr/gig"
-	"github.com/pitr/gig/middleware"
 )
 
 var port = "1965"
 
 func main() {
-	g := gig.New()
-
-	g.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-		Format: "path=${uri} status=${status} duration=${latency} ${error}\n",
-	}))
-	g.Use(middleware.Recover())
+	g := gig.Default()
 
 	g.Static("", "static")
 
@@ -99,7 +93,7 @@ func main() {
 			if q == expect {
 				return c.Gemini(gig.StatusSuccess, "Passed\n=> 3.2.1.gmi Back")
 			}
-			return c.Gemini(gig.StatusSuccess, fmt.Sprintf("FAILED\nClient sent %v\nShould send %v\n=> 3.2.1.gmi Back", q, expect))
+			return c.Gemini(gig.StatusSuccess, "FAILED\nClient sent %v\nShould send %v\n=> 3.2.1.gmi Back", q, expect)
 		})
 		v13.Handle("/3.2.1.long", func(c gig.Context) error {
 			q := c.URL().RawQuery
@@ -107,9 +101,9 @@ func main() {
 				return c.NoContent(gig.StatusInput, "Please enter the input as instructed on the previous page")
 			}
 			if q != strings.Repeat("x", len(q)) {
-				return c.Gemini(gig.StatusSuccess, fmt.Sprintf("FAILED\nYour client sent magnled input\n```\n%v\n```\n=> 3.2.1.gmi Back", q))
+				return c.Gemini(gig.StatusSuccess, "FAILED\nYour client sent magnled input\n```\n%v\n```\n=> 3.2.1.gmi Back", q)
 			}
-			return c.Gemini(gig.StatusSuccess, fmt.Sprintf("Your client sent %d bytes\n=> 3.2.1.gmi Back", len(q)))
+			return c.Gemini(gig.StatusSuccess, "Your client sent %d bytes\n=> 3.2.1.gmi Back", len(q))
 		})
 		v13.Handle("/3.2.2.text", func(c gig.Context) error {
 			return c.Text(gig.StatusSuccess, "Pass")

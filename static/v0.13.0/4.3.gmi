@@ -1,5 +1,10 @@
 # 4.3 Transient client certificate sessions
 
+=> 4.3.transient ▶️ Asks for Transient certificate, then serves 21 to instruct client to delete certificate, then tests that it was deleted.
+
+=> 5.gmi The text/gemini media type
+=> / Home
+
 ```
 ## 4.3 Transient client certificate sessions
 
@@ -46,7 +51,3 @@ process terminates.
 Transient certificates SHOULD be permanently deleted after not having
 been used for more than 24 hours.
 ```
-
-=> 4.3.transient ▶️ Asks for Transient certificate, then serves 21 to instruct client to delete certificate, then tests that it was deleted.
-
-=> 5.gmi The text/gemini media type

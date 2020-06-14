@@ -1,5 +1,10 @@
 # 4.2 Server certificate validation
 
+This server cannot at this moment test TOFU certificate-pinning.
+
+=> 4.3.gmi Transient client certificate sessions
+=> / Home
+
 ```
 ## 4.2 Server certificate validation
 
@@ -26,7 +31,3 @@ receiving a certificate without a signature chain leading to a trusted CA.
 This model is by no means perfect, but it is not awful and is vastly
 superior to just accepting self-signed certificates unconditionally.
 ```
-
-This server cannot at this moment test TOFU certificate-pinning.
-
-=> 4.3.gmi Transient client certificate sessions

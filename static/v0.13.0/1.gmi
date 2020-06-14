@@ -1,5 +1,10 @@
 # 1 Overview
 
+Shout out to Go!
+
+=> 1.1.gmi 1.1 Gemini transactions
+=> / Home
+
 ```
 Gemini is a client-server protocol featuring request-response
 transactions, broadly similar to gopher or HTTP.  Connections are closed
@@ -10,7 +15,3 @@ port, so it's very easy to run a server as a "nobody" user, even if
 e.g. the server is written in Go and so can't drop privileges in the
 traditional fashion.
 ```
-
-Shout out to Go!
-
-=> 1.1.gmi 1.1 Gemini transactions

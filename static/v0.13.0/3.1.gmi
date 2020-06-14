@@ -1,5 +1,12 @@
 # 3.1 Response headers
 
+=> 3.1.bad.status ▶️ Server sends non-numeric status code, fail gracefully
+=> 3.1.no.space ▶️ Server sends non-space after status code, fail gracefully
+=> 3.1.long.meta ▶️ Server sends meta larger than 1024 bytes, fail gracefully
+
+=> 3.2.gmi Status codes
+=> / Home
+
 ```
 ## 3.1 Response headers
 
@@ -23,9 +30,3 @@ If a server sends a <STATUS> which is not a two-digit number or a <META>
 which exceeds 1024 bytes in length, the client SHOULD close the connection
 and disregard the response header, informing the user of an error.
 ```
-
-=> 3.1.bad.status ▶️ Server sends non-numeric status code, fail gracefully
-=> 3.1.no.space ▶️ Server sends non-space after status code, fail gracefully
-=> 3.1.long.meta ▶️ Server sends meta larger than 1024 bytes, fail gracefully
-
-=> 3.2.gmi Status codes

@@ -1,5 +1,10 @@
 # 2 Gemini requests
 
+Nothing to test (this server does not allow proxy requests)
+
+=> 3.gmi Gemini responses
+=> / Home
+
 ```
 # 2 Gemini requests
 
@@ -21,7 +26,3 @@ protocol-translating gateways to e.g. fetch gopher resources over Gemini.
 Proxying is optional and the vast majority of servers are expected to
 only respond to requests for resources at their own domain(s).
 ```
-
-Nothing to test (this server does not allow proxy requests)
-
-=> 3.gmi Gemini responses

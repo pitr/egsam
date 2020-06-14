@@ -1,5 +1,18 @@
 # 1.1 Gemini transactions
 
+
+We will test client certificate in later sections.
+
+Let's kick off with some connection tests:
+
+=> gemini://pitr.ca/ ▶️ Port is not open, client should fail gracefully
+=> 1.1.write.timeout ▶️ Server takes too long to write response, client should fail gracefully
+=> 1.1.no.close ▶️ Server writes response, but never closes connection, client should either show partial content, or fail gracefully
+
+=> 2.gmi Gemini requests
+=> / Home
+
+
 ```
 ## 1.1 Gemini transactions
 
@@ -17,13 +30,3 @@ S:   Sends response body (text or binary data) (see 3.3)
 S:   Closes connection
 C:   Handles response (see 3.4)
 ```
-
-We will test client certificate in later sections.
-
-Let's kick off with some connection tests:
-
-=> gemini://pitr.ca/ ▶️ Port is not open, client should fail gracefully
-=> 1.1.write.timeout ▶️ Server takes too long to write response, client should fail gracefully
-=> 1.1.no.close ▶️ Server writes response, but never closes connection, client should either show partial content, or fail gracefully
-
-=> 2.gmi Gemini requests

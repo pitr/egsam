@@ -1,5 +1,10 @@
 # Project Gemini
 
+This is an intro, if you got here then you have at least a simple client that can navigate links and display content. We will test edge cases, not the happy path.
+
+=> 1.gmi Overview
+=> / Home
+
 ```
 # Project Gemini
 
@@ -22,7 +27,3 @@ posts and keep notes.
 Feedback on any part of this is extremely welcome, please email
 solderpunk@sdf.org.
 ```
-
-This is an intro, if you got here then you have at least a simple client that can navigate links and display content. We will test edge cases, not the happy path.
-
-=> 1.gmi Overview
