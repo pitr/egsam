@@ -1,0 +1,10 @@
+# 3 Gemini responses
+
+=> 3.no.cr ▶️ Server only sends <LF>, fail gracefully
+
+=> 3.1.gmi Response headers
+=> / Home
+
+## Spec excerpt
+
+Gemini response consist of a single CRLF-terminated header line, optionally followed by a response body.

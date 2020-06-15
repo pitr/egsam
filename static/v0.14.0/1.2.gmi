@@ -1,0 +1,8 @@
+# 1.2 Gemini URI scheme
+
+=> 2.gmi Gemini requests
+=> / Home
+
+## Spec excerpt
+
+Resources hosted via Gemini are identified using URIs with the scheme "gemini".  This scheme is syntactically compatible with the generic URI syntax defined in RFC 3986, but does not support all components of the generic syntax.  In particular, the authority component is allowed and required, but its userinfo subcomponent is NOT allowed.  The host subcomponent is required.  The port subcomponent is optional, with a default value of 1965.  The path, query and fragment components are allowed and have no special meanings beyond those defined by the generic syntax.  Spaces in gemini URIs should be encoded as %20, not +.

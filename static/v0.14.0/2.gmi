@@ -1,0 +1,16 @@
+# 2 Gemini requests
+
+Nothing to test (this server does not allow proxy requests)
+
+=> 3.gmi Gemini responses
+=> / Home
+
+## Spec excerpt
+
+Gemini requests are a single CRLF-terminated line with the following structure:
+
+<URL><CR><LF>
+
+<URL> is a UTF-8 encoded absolute URL, of maximum length 1024 bytes.  If the scheme of the URL is not specified, a scheme of gemini:// is implied.
+
+Sending an absolute URL instead of only a path or selector is effectively equivalent to building in a HTTP "Host" header.  It permits virtual hosting of multiple Gemini domains on the same IP address.  It also allows servers to optionally act as proxies.  Including schemes other than gemini:// in requests allows servers to optionally act as protocol-translating gateways to e.g. fetch gopher resources over Gemini.  Proxying is optional and the vast majority of servers are expected to only respond to requests for resources at their own domain(s).

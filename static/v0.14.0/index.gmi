@@ -6,14 +6,15 @@ We will test each section of the spec separately.
 
 Each test is marked with ▶️. Count the number of tests you fail (or pass if your client is very simple) and at the end you will be able to calculate your client's score.
 
-=> project.gmi Start
+=> 0.gmi Start
 => / Home
 
 ## Table of Contents
 
-=> project.gmi Start
+=> 0.gmi Start
 => 1.gmi 1 Overview
 => 1.1.gmi 1.1 Gemini transactions
+=> 1.2.gmi 1.2 Gemini URI scheme
 => 2.gmi 2 Gemini requests
 => 3.gmi 3 Gemini responses
 => 3.1.gmi 3.1 Response headers

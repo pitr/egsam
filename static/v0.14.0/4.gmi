@@ -5,11 +5,8 @@
 => 4.1.gmi Version requirements
 => / Home
 
-```
-# 4 TLS
+## Spec excerpt
 
 Use of TLS for Gemini transactions is mandatory.
 
-Use of the Server Name Indication (SNI) extension to TLS is also
-mandatory, to facilitate name-based virtual hosting.
-```
+Use of the Server Name Indication (SNI) extension to TLS is also mandatory, to facilitate name-based virtual hosting.

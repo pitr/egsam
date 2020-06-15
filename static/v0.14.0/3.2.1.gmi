@@ -10,16 +10,8 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 => 3.2.2.gmi 2x (SUCCESS)
 => / Home
 
-```
-### 3.2.1 1x (INPUT)
+## Spec excerpt
 
 Status codes beginning with 1 are INPUT status codes, meaning:
 
-The requested resource accepts a line of textual user input.  The <META>
-line is a prompt which should be displayed to the user.  The same
-resource should then be requested again with the user's input included
-as a query component.  Queries are included in requests as per the usual
-generic URL definition in RFC3986, i.e. separated from the path by a ?.
-Reserved characters used in the user's input must be "percent-encoded"
-as per RFC3986, and space characters should also be percent-encoded.
-```
+The requested resource accepts a line of textual user input.  The <META> line is a prompt which should be displayed to the user.  The same resource should then be requested again with the user's input included as a query component.  Queries are included in requests as per the usual generic URL definition in RFC3986, i.e. separated from the path by a ?.  Reserved characters used in the user's input must be "percent-encoded" as per RFC3986, and space characters should also be percent-encoded.

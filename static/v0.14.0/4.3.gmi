@@ -1,0 +1,16 @@
+# 4.3 Transient client certificate sessions
+
+=> 4.3.cert ▶️ When asked, please generate a certificate with subject (CN) field set to "tester".
+
+=> 5.gmi The text/gemini media type
+=> / Home
+
+## Spec excerpt
+
+Although rarely seen on the web, TLS permits clients to identify themselves to servers using certificates, in exactly the same way that servers traditionally identify themselves to the client.  Gemini includes the ability for servers to request in-band that a client repeats a request with a client certificate.  This is a very flexible, highly secure but also very simple notion of client identity with several applications:
+
+* Short-lived client certificates which are generated on demand and deleted immediately after use can be used as "session identifiers" to maintain server-side state for applications.  In this role, client certificates act as a substitute for HTTP cookies, but unlike cookies they are generated voluntarily by the client, and once the client deletes a certificate and its matching key, the server cannot possibly "resurrect" the same value later (unlike so-called "super cookies").
+* Long-lived client certificates can reliably identify a user to a multi-user application without the need for passwords which may be brute-forced.  Even a stolen database table mapping certificate hashes to user identities is not a security risk, as rainbow tables for certificates are not feasible.
+* Self-hosted, single-user applications can be easily and reliably secured in a manner familiar from OpenSSH: the user generates a self-signed certificate and adds its hash to a server-side list of permitted certificates, analogous to the .authorized_keys file for SSH).
+
+Gemini requests will typically be made without a client certificate.  If a requested resource requires a client certificate and one is not included in a request, the server can respond with a status code of 60, 61 or 62 (see Appendix 1 below for a description of all status codes related to client certificates).  A client certificate which is generated or loaded in response to such a status code has its scope bound to the same hostname as the request URL and to all paths below the path of the request URL path.  E.g. if a request for gemini://example.com/foo returns status 60 and the user chooses to generate a new client certificate in response to this, that same certificate should be used for subseqent requests to gemini://example.com/foo, gemini://example.com/foo/bar/, gemini://example.com/foo/bar/baz, etc., until such time as the user decides to delete the certificate or to temporarily deactivate it.  Interactive clients for human users are strongly recommended to make such actions easy and to generally give users full control over the use of client certificates.

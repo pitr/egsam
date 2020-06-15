@@ -2,7 +2,7 @@
 
 Test your Gemini client
 
-=> /v0.13.0/ Test against v0.13.0 (June 7th 2020)
+=> /v0.14.0/ Test against v0.14.0 (June 15th 2020)
 
 
 => https://github.com/pitr/egsam Source code
