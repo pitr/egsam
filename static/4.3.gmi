@@ -1,8 +1,8 @@
-# 4.3 Transient client certificate sessions
+# 4.3 Client certificates
 
 => 4.3.cert ▶️ When asked, please generate a certificate with subject (CN) field set to "tester".
 
-=> 5.gmi The text/gemini media type
+=> 5.gmi Next - The text/gemini media type
 => / Home
 
 ## Spec excerpt

@@ -4,7 +4,7 @@
 => 3.1.no.space ▶️ Server sends non-space after status code, fail gracefully
 => 3.1.long.meta ▶️ Server sends meta larger than 1024 bytes, fail gracefully
 
-=> 3.2.gmi Status codes
+=> 3.2.gmi Next - Status codes
 => / Home
 
 ## Spec excerpt

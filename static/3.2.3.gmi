@@ -1,8 +1,8 @@
-# 3.3.3 3x (REDIRECT)
+# 3.2.3 3x (REDIRECT)
 
 => 3.2.3.redirect ▶️ Double redirect
 
-=> 3.2.4.gmi 4x (TEMPORARY FAILURE)
+=> 3.2.4.gmi Next - 4x (TEMPORARY FAILURE)
 => / Home
 
 ## Spec excerpt

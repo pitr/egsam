@@ -1,6 +1,6 @@
-# 3.5.6 Notes
+# 3.2.7 Notes
 
-=> 3.3.gmi Response bodies
+=> 3.3.gmi Next - Response bodies
 => / Home
 
 ## Spec excerpt

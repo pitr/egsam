@@ -2,7 +2,7 @@
 
 Shout out to Go!
 
-=> 1.1.gmi 1.1 Gemini transactions
+=> 1.1.gmi Next - 1.1 Gemini transactions
 => / Home
 
 ## Spec excerpt

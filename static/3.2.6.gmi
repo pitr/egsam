@@ -1,8 +1,8 @@
-# 3.3.6 6x (CLIENT CERTIFICATE REQUIRED)
+# 3.2.6 6x (CLIENT CERTIFICATE REQUIRED)
 
 => 3.2.6.check ▶️ (Do not create certificate) Client should show "Pass" as a reason for certificate.
 
-=> 3.2.7.gmi Notes
+=> 3.2.7.gmi Next - Notes
 => / Home
 
 ## Spec excerpt

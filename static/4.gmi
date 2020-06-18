@@ -2,7 +2,7 @@
 
 ▶️ Pass :) You would not be able to see this page if client was not using TLS or SNI as this server uses name-based virtual hosting.
 
-=> 4.1.gmi Version requirements
+=> 4.1.gmi Next - Version requirements
 => / Home
 
 ## Spec excerpt

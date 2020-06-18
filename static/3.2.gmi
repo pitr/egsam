@@ -10,7 +10,7 @@
 => 3.2.status.6 ▶️ Server returns 69 status code, fail or assume 60 (do NOT create or send a certificate)
 => 3.2.status.9 ▶️ Server returns 99 status code, fail gracefully
 
-=> 3.2.1.gmi 1x (INPUT)
+=> 3.2.1.gmi Next - 1x (INPUT)
 => / Home
 
 ## Spec excerpt

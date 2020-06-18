@@ -2,7 +2,7 @@
 
 => 3.no.cr ▶️ Server only sends <LF>, fail gracefully
 
-=> 3.1.gmi Response headers
+=> 3.1.gmi Next - Response headers
 => / Home
 
 ## Spec excerpt

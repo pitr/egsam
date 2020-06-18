@@ -2,7 +2,7 @@
 
 This server cannot at this moment test TOFU certificate-pinning.
 
-=> 4.3.gmi Transient client certificate sessions
+=> 4.3.gmi Next - Client certificates
 => / Home
 
 ## Spec excerpt

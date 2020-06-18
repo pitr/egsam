@@ -1,6 +1,6 @@
 # 1.2 Gemini URI scheme
 
-=> 2.gmi Gemini requests
+=> 2.gmi Next - Gemini requests
 => / Home
 
 ## Spec excerpt

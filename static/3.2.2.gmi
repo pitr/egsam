@@ -7,7 +7,7 @@ Let's test media types:
 => 3.2.2.jpg ▶️ jpeg, should see Pass
 => 3.2.2.jpg.bad ▶️ jpeg but content is text, should fail gracefully
 
-=> 3.2.3.gmi 3x (REDIRECT)
+=> 3.2.3.gmi Next - 3x (REDIRECT)
 => / Home
 
 ## Spec excerpt

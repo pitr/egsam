@@ -9,7 +9,7 @@ Let's kick off with some connection tests:
 => 1.1.write.timeout ▶️ Server takes too long to write response, client should fail gracefully
 => 1.1.no.close ▶️ Server writes response, but never closes connection, client should either show partial content, or fail gracefully
 
-=> 1.2.gmi Gemini URI scheme
+=> 1.2.gmi Next - Gemini URI scheme
 => / Home
 
 ## Spec excerpt

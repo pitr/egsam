@@ -1,8 +1,8 @@
-# 3.3.4 4x (TEMPORARY FAILURE)
+# 3.2.4 4x (TEMPORARY FAILURE)
 
 => 3.2.4.fail ▶️ Client should show "Pass" as error message
 
-=> 3.2.5.gmi 5x (PERMANENT FAILURE)
+=> 3.2.5.gmi Next - 5x (PERMANENT FAILURE)
 => / Home
 
 ## Spec excerpt

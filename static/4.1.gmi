@@ -2,7 +2,7 @@
 
 ▶️ Pass, this server checks that your client uses TLS version 1.2+
 
-=> 4.2.gmi Server certificate validation
+=> 4.2.gmi Next - Server certificate validation
 => / Home
 
 ## Spec excerpt

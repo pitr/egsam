@@ -2,7 +2,7 @@
 
 Nothing to test (this server does not allow proxy requests)
 
-=> 3.gmi Gemini responses
+=> 3.gmi Next - Gemini responses
 => / Home
 
 ## Spec excerpt

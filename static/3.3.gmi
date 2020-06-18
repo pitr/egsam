@@ -6,7 +6,7 @@ Let's test mime types:
 => 3.3.utf16 ▶️ charset=utf-16, should see Pass or fail gracefully if utf-16 is not supported
 => 3.3.utf8.bad ▶️ charset=utf-8 but content is utf-16, should fail gracefully
 
-=> 3.4.gmi Response body handling
+=> 3.4.gmi Next - Response body handling
 => / Home
 
 ## Spec excerpt

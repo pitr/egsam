@@ -2,7 +2,7 @@
 
 => 3.4.text.unknown ▶️ text/garbage, should display or fail gracefully
 
-=> 4.gmi TLS
+=> 4.gmi Next - TLS
 => / Home
 
 ## Spec excerpt

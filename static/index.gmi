@@ -1,8 +1,39 @@
 # egsam time!
 
-Test your Gemini client
+Test your Gemini client. This tests against against v0.14.1 (June 15th 2020)
 
-=> /v0.14.0/ Test against v0.14.0 (June 15th 2020)
+=> https://github.com/pitr/egsam Source code for egsam!
 
+We will test each section of the spec separately.
 
-=> https://github.com/pitr/egsam Source code
+## Scoring
+
+Each test is marked with ▶️. Count the number of tests you fail (or pass if your client is very simple) and at the end you will be able to calculate your client's score.
+
+=> 0.gmi Start
+=> / Home
+
+## Table of Contents
+
+=> 0.gmi Start
+=> 1.gmi 1 Overview
+=> 1.1.gmi 1.1 Gemini transactions
+=> 1.2.gmi 1.2 Gemini URI scheme
+=> 2.gmi 2 Gemini requests
+=> 3.gmi 3 Gemini responses
+=> 3.1.gmi 3.1 Response headers
+=> 3.2.gmi 3.2 Status codes
+=> 3.2.1.gmi 3.2.1 1x (INPUT)
+=> 3.2.2.gmi 3.2.2 2x (SUCCESS)
+=> 3.2.3.gmi 3.2.3 3x (REDIRECT)
+=> 3.2.4.gmi 3.2.4 4x (TEMPORARY FAILURE)
+=> 3.2.5.gmi 3.2.5 5x (PERMANENT FAILURE)
+=> 3.2.6.gmi 3.2.6 6x (CLIENT CERTIFICATE REQUIRED)
+=> 3.2.7.gmi 3.2.7 Notes
+=> 3.3.gmi 3.3 Response bodies
+=> 3.4.gmi 3.4 Response body handling
+=> 4.gmi 4 TLS
+=> 4.1.gmi 4.1 Version requirements
+=> 4.2.gmi 4.2 Server certificate validation
+=> 4.3.gmi 4.3 Client certificates
+=> 5.gmi 5 The text/gemini media type
