@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strings"
 	"time"
 
@@ -18,8 +19,8 @@ func main() {
 		return c.Gemini("FAILED. You waited too long")
 	})
 	g.Handle("/1.1.no.close", func(c gig.Context) error {
-		c.Gemini("Nice, your client displayed partial content\n")
-		time.Sleep(10 * time.Minute)
+		_ = c.Gemini("Nice, your client displayed partial content\n")
+		time.Sleep(1 * time.Minute)
 		_, err := c.Response().Write([]byte("FAILED"))
 		return err
 	})
@@ -134,17 +135,16 @@ Should send %v
 	g.Handle("/3.2.6.check", func(c gig.Context) error {
 		return gig.NewErrorFrom(gig.ErrCertificateNotAuthorised, "If you see this, client Passed")
 	})
-	g.Handle("/3.3.ascii", func(c gig.Context) error {
-		return c.Blob("text/gemini; charset=us-ascii", []byte("Pass\n"))
+	g.Handle("/3.3/:encoding", func(c gig.Context) error {
+		enc := c.Param("encoding")
+		data, err := ioutil.ReadFile(fmt.Sprintf("static/encodings/%s.txt", enc))
+		if err != nil {
+			return err
+		}
+		return c.Blob(fmt.Sprintf("text/gemini; charset=%s", enc), data)
 	})
-	g.Handle("/3.3.utf8", func(c gig.Context) error {
-		return c.Blob("text/gemini; charset=utf-8", []byte("𝒫𝒶𝓈𝓈"))
-	})
-	g.Handle("/3.3.utf16", func(c gig.Context) error {
-		return c.Blob("text/gemini; charset=utf-16", []byte("\x14\x6d\xc3\x15\x15\x24\xe2"))
-	})
-	g.Handle("/3.3.utf8.bad", func(c gig.Context) error {
-		return c.Blob("text/gemini; charset=utf-8", []byte("\x14\x6d\xc3\x15\x15\x24\xe2"))
+	g.Handle("/3.3.utf16.bad", func(c gig.Context) error {
+		return c.Blob("text/gemini; charset=utf-16", []byte("𝒻𝒶𝒾𝓁𝑒𝒹"))
 	})
 	g.Handle("/3.4.text.unknown", func(c gig.Context) error {
 		return c.Blob("text/garbage", []byte("Pass"))
