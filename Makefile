@@ -14,14 +14,14 @@ run: build.local
 	./build/$(BINARY)
 
 deploy: build.linux
-	scp build/linux/$(BINARY) ec2-user@$(PRODUCTION):$(BINARY)-next
-	ssh ec2-user@$(PRODUCTION) 'cp $(BINARY) $(BINARY)-old'
-	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)-next $(BINARY)'
+	scp build/linux/$(BINARY) ec2-user@$(PRODUCTION):$(BINARY)/$(BINARY)-next
+	ssh ec2-user@$(PRODUCTION) 'cp $(BINARY)/$(BINARY) $(BINARY)/$(BINARY)-old'
+	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)/$(BINARY)-next $(BINARY)/$(BINARY)'
 	ssh ec2-user@$(PRODUCTION) 'sudo systemctl restart $(BINARY)'
-	scp -r static/* ec2-user@$(PRODUCTION):static
+	scp -r static/* ec2-user@$(PRODUCTION):$(BINARY)/static
 
 rollback:
-	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)-old $(BINARY)'
+	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)/$(BINARY)-old $(BINARY)/$(BINARY)'
 	ssh ec2-user@$(PRODUCTION) 'sudo systemctl restart $(BINARY)'
 
 build.local: build/$(BINARY)
