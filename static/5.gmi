@@ -7,7 +7,7 @@ Testing the rest of the spec is still in progress.
 
 ## Score
 
-You got to the end! To calculate the score, count failed tests and subtract from 31, total number of tests.
+You got to the end! To calculate the score, count failed tests and subtract from 33, total number of tests.
 
 ## Spec excerpt
 

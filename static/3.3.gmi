@@ -1,10 +1,16 @@
 # 3.3 Response bodies
 
 Let's test mime types:
-=> 3.3.ascii ▶️ charset=us-ascii, should see Pass
-=> 3.3.utf8 ▶️ charset=utf-8, should see Pass
-=> 3.3.utf16 ▶️ charset=utf-16, should see Pass or fail gracefully if utf-16 is not supported
-=> 3.3.utf8.bad ▶️ charset=utf-8 but content is utf-16, should fail gracefully
+=> 3.3/utf-8 ▶️ charset=utf-8
+=> 3.3/utf-16le ▶️ charset=utf-16le
+=> 3.3/utf-16be ▶️ charset=utf-16be
+=> 3.3/utf-32le ▶️ charset=utf-32le
+=> 3.3/utf-32be ▶️ charset=utf-32be
+=> 3.3/windows-1252 ▶️ charset=windows-1252
+=> 3.3/tcvn-5712 ▶️ charset=tcvn-5712
+=> 3.3/cp437 ▶️ charset=cp437
+=> 3.3/ebcdicatde ▶️ charset=ebcdicatde
+=> 3.3.utf16.bad ▶️ charset=utf-16 but content is utf-8, should fail gracefully and NOT display content in encoding utf-8
 
 => 3.4.gmi Next - Response body handling
 => / Home
