@@ -2,6 +2,10 @@
 
 BINARY        ?= egsam
 SOURCES       = $(shell find . -name '*.go')
+VERSION       ?= $(shell git describe --tags --always)
+IMAGE         ?= deploy.glv.one/pitr/$(BINARY)
+TAG           ?= $(VERSION)
+DOCKERFILE    ?= Dockerfile
 BUILD_FLAGS   ?= -v
 LDFLAGS       ?= -w -s
 
@@ -13,17 +17,6 @@ clean:
 run: build.local
 	./build/$(BINARY)
 
-deploy: build.linux
-	scp build/linux/$(BINARY) ec2-user@$(PRODUCTION):$(BINARY)/$(BINARY)-next
-	ssh ec2-user@$(PRODUCTION) 'cp $(BINARY)/$(BINARY) $(BINARY)/$(BINARY)-old'
-	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)/$(BINARY)-next $(BINARY)/$(BINARY)'
-	ssh ec2-user@$(PRODUCTION) 'sudo systemctl restart $(BINARY)'
-	scp -r static/* ec2-user@$(PRODUCTION):$(BINARY)/static
-
-rollback:
-	ssh ec2-user@$(PRODUCTION) 'mv $(BINARY)/$(BINARY)-old $(BINARY)/$(BINARY)'
-	ssh ec2-user@$(PRODUCTION) 'sudo systemctl restart $(BINARY)'
-
 build.local: build/$(BINARY)
 build.linux: build/linux/$(BINARY)
 
@@ -32,3 +25,9 @@ build/$(BINARY): $(SOURCES)
 
 build/linux/$(BINARY): $(SOURCES)
 	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build $(BUILD_FLAGS) -o build/linux/$(BINARY) -ldflags "$(LDFLAGS)" .
+
+build.docker: build.linux
+	docker build --rm -t "$(IMAGE):$(TAG)" -f $(DOCKERFILE) .
+
+build.push: build.docker
+	docker push "$(IMAGE):$(TAG)"
