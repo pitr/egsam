@@ -2,6 +2,7 @@
 
 Test your Gemini client. This tests against against v0.14.1 (June 15th 2020)
 
+=> gemini://gemini.circumlunar.space/docs/specification.gmi Gemini Protocol Specification
 => https://github.com/pitr/egsam Source code for egsam!
 
 We will test each section of the spec separately.
