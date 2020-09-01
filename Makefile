@@ -29,5 +29,5 @@ build/linux/$(BINARY): $(SOURCES)
 build.docker: build.linux
 	docker build --rm -t "$(IMAGE):$(TAG)" -f $(DOCKERFILE) .
 
-build.push: build.docker
+deploy: build.docker
 	docker push "$(IMAGE):$(TAG)"
