@@ -32,6 +32,15 @@ func main() {
 		return &cert, nil
 	}
 
+	g.Use(func(next gig.HandlerFunc) gig.HandlerFunc {
+		return func(c gig.Context) error {
+			if strings.Contains(c.RequestURI(), "egsam.pitr.ca") {
+				return c.NoContent(gig.StatusRedirectPermanent, "gemini://egsam.glv.one")
+			}
+			return next(c)
+		}
+	})
+
 	g.Static("", "static")
 
 	g.Handle("/1.1.write.timeout", func(c gig.Context) error {
