@@ -133,9 +133,9 @@ Should send %v
 			return c.NoContent(gig.StatusInput, "Please enter the input as instructed on the previous page")
 		}
 		if q != strings.Repeat("x", len(q)) {
-			return c.Gemini("FAILED\nYour client sent magnled input\n```\n%v\n```\n=> 3.2.1.gmi Back", q)
+			return c.Gemini("FAILED\nYour client sent the following input\n```\n%v\n```\n=> 3.2.1.gmi Back", q)
 		}
-		return c.Gemini("Your client sent %d bytes\n=> 3.2.1.gmi Back", len(q))
+		return c.Gemini("Passed. Your client sent %d bytes\n=> 3.2.1.gmi Back", len(q))
 	})
 	g.Handle("/3.2.2.text", func(c gig.Context) error {
 		return c.Text("Pass")
