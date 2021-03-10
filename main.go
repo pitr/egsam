@@ -111,10 +111,13 @@ func main() {
 		return err
 	})
 	g.Handle("/3.2.1.percent", func(c gig.Context) error {
-		const expect = "99%20%2B%201%25"
-		q := c.URL().RawQuery
+		const expect = "1% + #x = -1 & ?"
+		q, err := c.QueryString()
+		if err != nil {
+			return c.Gemini("Failed: server error: %s", err)
+		}
 		if q == "" {
-			return c.NoContent(gig.StatusInput, "Please enter the following: 99 + 1%")
+			return c.NoContent(gig.StatusInput, "Please enter the following: 1%% + #x = -1 & ?")
 		}
 		if q == expect {
 			return c.Gemini("Passed\n=> 3.2.1.gmi Back")
