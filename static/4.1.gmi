@@ -1,6 +1,7 @@
 # 4.1 Version requirements
 
 ▶️ Pass, this server checks that your client uses TLS version 1.2+
+=> gemini://egsam13.glv.one ▶️ Should see "Pass".
 
 => 4.2.gmi Next - Server certificate validation
 => / Home
